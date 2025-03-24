@@ -36,9 +36,9 @@ This application is designed to manage various aspects of the Indian Premier Lea
 2. Update the database configuration in the `springapp/src/main/resources/application.properties` file:
 
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/ipl
-   spring.datasource.username=root
-   spring.datasource.password=root
+   spring.datasource.url=jdbc:mysql://localhost:3306/ipl // use the port as per your requirement
+   spring.datasource.username=your-username
+   spring.datasource.password=your-password
    ```
 
 ### Running the Spring Boot Application
