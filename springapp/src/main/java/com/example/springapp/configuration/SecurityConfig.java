@@ -58,8 +58,16 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfig.corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index.html", "/static/**", "/js/**", "/css/**", "/images/**", "/favicon.ico", "/**/*.js", "/**/*.css").permitAll()
-                        .requestMatchers("*",
+                        .requestMatchers(
+                                "/", 
+                                "/index.html", 
+                                "/static/**", 
+                                "/js/**", 
+                                "/css/**", 
+                                "/images/**", 
+                                "/favicon.ico", 
+                                "/**/*.js", 
+                                "/**/*.css",
                                 "/api/test/welcome",
                                 "/api/test/team",
                                 "/api/team",
@@ -79,9 +87,9 @@ public class SecurityConfig {
                                 "/api/user",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html/",
-                                "/webjars/**")
-                        .permitAll()
+                                "/swagger-ui.html",
+                                "/webjars/**"
+                        ).permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
