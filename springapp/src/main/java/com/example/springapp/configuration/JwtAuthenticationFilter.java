@@ -27,6 +27,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String requestURI = request.getRequestURI();
+
+        // Skip filtering for static resources
+        if (requestURI.startsWith("/static/") || 
+            requestURI.startsWith("/js/") || 
+            requestURI.startsWith("/css/") || 
+            requestURI.startsWith("/images/") || 
+            requestURI.equals("/") || 
+            requestURI.equals("/index.html") || 
+            requestURI.equals("/favicon.ico") || 
+            requestURI.matches(".+\\.(js|css|png|jpg|jpeg|svg|ico)$")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String authHeader = request.getHeader("Authorization");
         logger.info("Bearer Token : " + authHeader);
